@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">wUgamesSdk</string>
+    <string name="provider_name">com.onmo.ugames.wrapper.impl.UGamesDataProvider</string>
+    <string name="config_url">https://www.google.com/</string>
+    <string name="base_url">https://api-dev.onmobilespace.com/daius-service/v1-0-0-app/9997/</string>
+    <string name="base_store_root">9997</string>
+    <string name="enable_tmeid">true</string>
+    <string name="store_locale">en-gb</string>
+
+</resources>

@@ -1,7 +1,7 @@
 # Onmo Wrapper Games SDK
 
 Onmo Wrapper Games SDK is interface for UGames Store Android applications.
-Wrapper Games Application have a access to UGames Store application data / features through this SDK.
+Wrapper Games have a access to UGames Store application's data through this SDK.
 Once you complete the set-up instructions below, just start your app and point
 
 
@@ -10,40 +10,13 @@ Once you complete the set-up instructions below, just start your app and point
 ### Download
 Download [the latest AAR](https://github.com/srinivasvadde/Wrapper_Games_SDKsample/releases/latest) or grab via Gradle:
 ```groovy
-compile 'com.onmo.sdk:1.0'
+compile 'com.onmo.wgsdk:1.0'
 ```
 
-For more details on how to customize the JavaScript runtime see [stetho-js-rhino](stetho-js-rhino/).
 
 ### Putting it together
-Integrating with Onmo SDK is intended to be seamless and straightforward for
-most existing Android applications.  There is a simple initialization step
-which occurs in your `Application` class:
-
-```java
-public class MyApplication extends Application {
-  public void onCreate() {
-    super.onCreate();
-    OnmoWGSDK.newInitializer(mContext);
-  }
-}
-```
-Also ensure that your `MyApplication` Java class is registered in your `AndroidManifest.xml` file, otherwise you will not see an "Inspect" button in `chrome://inspect/#devices` :
-
-```xml
-<manifest
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        ...>
-        <application
-                android:name="MyApplication"
-                ...>
-         </application>
-</manifest>
-```
-
-This brings up most of the default configuration but does not enable some
-additional hooks (most notably, network inspection).  See below for specific
-details on individual subsystems.
+Integrating with Onmo SDK is intended to be seamless and straightforward to Wrapper Game applications. There is a simple initialization step
+which occurs in your `MainActivity`:
 
 ### Accessing SDK methods
 This is currently the simplest way
@@ -67,7 +40,7 @@ See the [`Wrapper_Games_SDKsample` project](Wrapper_Games_SDKsample) for more de
             mWGSession.getRegisterUser(new IResponseHandler<String>() {
                 @Override
                 public void handleResponse(String aUserId) {
-                    // wrapper game get the aUserId from teh callback
+                    // wrapper game get the aUserId in callback result
                 }
 
                 @Override

@@ -27,11 +27,20 @@ IWGameSession mWGSession = OnmoWGSDK.newInitializer(mContext)
                               .build();
 ```
 
+
+## Authenticating
+
+```java
+//Basic authentication
+IWGameSession mWGSession = OnmoWGSDK.newInitializer(mContext)
+                              .build(o6a-PfU-Phc-3tq);
+```
+
 See the [`Wrapper_Games_SDKsample` project](Wrapper_Games_SDKsample) for more details.
 
-## Going further
+## Examples
 
-### Getting User details
+### Getting User ID
 
 
 ```java

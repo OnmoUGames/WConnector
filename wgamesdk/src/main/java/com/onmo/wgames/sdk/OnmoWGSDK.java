@@ -9,17 +9,17 @@ import android.content.Context;
  */
 public class OnmoWGSDK {
 	private static final String TAG = "OnmoWGSDK";
-	public static InitializerBuilder newInitializerBuilder(Context context) {
-		return new InitializerBuilder(context);
+	public static Initializer newInitializer(Context context) {
+		return new Initializer(context);
 	}
 	/**
-	 * Configure what services are to be enabled in this instance of Stetho.
+	 * Configure
 	 */
-	public static class InitializerBuilder {
+	public static class Initializer {
 		final Context mContext;
 		final  SDKConnector sdkConnector;
 
-		private InitializerBuilder(Context context) {
+		private Initializer(Context context) {
 			mContext = context.getApplicationContext();
 			ConfigurationParser parser = new ConfigurationParser();
 			Configuration config = parser.parse(mContext);

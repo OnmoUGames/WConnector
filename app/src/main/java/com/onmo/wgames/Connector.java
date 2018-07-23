@@ -38,7 +38,8 @@ public class Connector {
 
 	public void initConnector(Context context){
 		this.mContext = context;
-		session = OnmoWGSDK.newInitializerBuilder(mContext).build();
+		session = OnmoWGSDK.newInitializer(mContext)
+				  .build();
 
 	}
 

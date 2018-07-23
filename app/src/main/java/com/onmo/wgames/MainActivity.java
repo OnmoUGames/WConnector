@@ -8,15 +8,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.onmo.wgames.sdk.CacheCriteriaType;
 import com.onmo.wgames.sdk.IResponseHandler;
+import com.onmo.wgames.sdk.IWGameSession;
+import com.onmo.wgames.sdk.OnmoWGSDK;
 import com.onmo.wgames.sdk.SDKException;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mTextMessage;
-    private Connector mConnector;
+
+    IWGameSession mWGSession ;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -41,46 +43,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        this.mConnector = Connector.getInstance();
-        getConnectoreConfig();
+
+
+        // getting session object to access the SDK methods
+        mWGSession = OnmoWGSDK.newInitializer(MainActivity.this)
+                .build();
+
     }
 
 
 
-
-
-
-
-    private void getConnectoreConfig()
+    private void getUser()
     {
-        Log.d(TAG,"getConnectoreConfig-->");
+        Log.d(TAG,"getUser-->");
 
-        mConnector.getUser(new IResponseHandler<String>() {
-            @Override
-            public void handleResponse(String result, CacheCriteriaType cacheCriteriaType) {
+        if(mWGSession!=null)
+        {
+            mWGSession.getStoreUser(new IResponseHandler<String>() {
+                @Override
+                public void handleResponse(String result) {
 
-               if(result!=null)
-               {
-                   Log.d(TAG,"getConnectoreConfig-result->"+result);
-               }
-               else
-               {
-                   Log.d(TAG,"getConnectoreConfig-result is null->");
-               }
+                }
 
-            }
+                @Override
+                public void handleException(SDKException exception) {
 
-            @Override
-            public void handleException(SDKException exception) {
-
-                Log.d(TAG,"getConnectoreConfig-handleException ->"+exception.getMessage());
-
-            }
-        });
+                }
+            });
+        }
 
 
 

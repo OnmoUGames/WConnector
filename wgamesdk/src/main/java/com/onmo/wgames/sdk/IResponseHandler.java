@@ -7,6 +7,6 @@ package com.onmo.wgames.sdk;
 
 public interface IResponseHandler<R> {
 
-	void handleResponse(R result, CacheCriteriaType cacheCriteriaType);
+	void handleResponse(R result);
 	void handleException(SDKException exception);
 }

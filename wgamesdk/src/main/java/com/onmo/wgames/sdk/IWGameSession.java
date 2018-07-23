@@ -8,7 +8,6 @@ package com.onmo.wgames.sdk;
 public interface IWGameSession {
 
 	WGameAccess getAccess();
-//	SDKConnector getConnector();
 	void getConfig(IResponseHandler<String> responseHandler);
-	void getRegisterUser( IResponseHandler<String> responseHandler);
+	void getStoreUser(IResponseHandler<String> responseHandler);
 }

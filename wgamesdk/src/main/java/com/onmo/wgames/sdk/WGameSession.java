@@ -30,15 +30,15 @@ public class WGameSession implements IWGameSession {
 	@Override
 	public void getConfig(IResponseHandler<String> responseHandler) {
 
+
+		//TODO yet to implement
 		Log.d("WGameSession","getConfig-->");
 
 	}
 
 	@Override
-	public void getRegisterUser(IResponseHandler<String> responseHandler) {
-		Log.d("WGameSession","getRegisterUser-->");
-		GetUserId api = new GetUserId(mConnector, responseHandler);
-		api.getUser();
+	public void getStoreUser(IResponseHandler<String> responseHandler) {
+		new GetUserId(mConnector, responseHandler).getUser();
 	}
 
 }

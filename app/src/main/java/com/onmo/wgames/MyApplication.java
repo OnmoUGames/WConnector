@@ -12,14 +12,12 @@ public class MyApplication extends Application {
 
 
 	private static final String TAG = "MyApplication";
-	private static final String ADS_APP_ID = "ca-app-pub-2134802588315619~3754653270";
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 
 		LogApp.d(TAG, "Init connector application class");
-		Connector.getInstance().initConnector(this);
 
 	}
 }

@@ -2,15 +2,13 @@ package com.onmo.wgames.sdk.impl.handler;
 
 import android.os.Handler;
 
-import com.onmo.wgames.sdk.CacheCriteriaType;
-import com.onmo.wgames.sdk.ConfigurationParser;
 import com.onmo.wgames.sdk.IResponseHandler;
 import com.onmo.wgames.sdk.LogApp;
 import com.onmo.wgames.sdk.SDKConnector;
 import com.onmo.wgames.sdk.SDKException;
 import com.onmo.wgames.sdk.Utils;
-import com.onmo.wgames.sdk.db.SDKParamCache;
 import com.onmo.wgames.sdk.core.http.parser.IHTTPResponseParser;
+import com.onmo.wgames.sdk.db.SDKParamCache;
 
 import org.json.JSONObject;
 
@@ -45,11 +43,10 @@ public class GetUserIdHandler implements IHTTPResponseParser {
 				final String localStorageTMEID = SampleEncryption.getLocalTMEID(response);
 				SDKParamCache.setCachedParams(mConnector.getApplicationContext(), SDKParamCache.PREFS_MADE_TMEID, localStorageTMEID);
 
-				LogApp.d(TAG," sending back to UI:");
 				mHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						uiResponseHandler.handleResponse(localStorageTMEID,CacheCriteriaType.FROM_LIVE);
+						uiResponseHandler.handleResponse(localStorageTMEID);
 					}
 				});
 
@@ -58,7 +55,6 @@ public class GetUserIdHandler implements IHTTPResponseParser {
 				mHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						LogApp.d(TAG," response is null or empty:");
 						uiResponseHandler.handleException(new SDKException("ErrorCode.INVALID_TMEID", /*ResponseConstant.ErrorCode.INVALID_TMEID*/5000));
 
 					}
@@ -68,7 +64,6 @@ public class GetUserIdHandler implements IHTTPResponseParser {
 			mHandler.post(new Runnable() {
 				@Override
 				public void run() {
-					LogApp.d(TAG," response is null or empty:");
 					uiResponseHandler.handleException(new SDKException("ErrorCode.INVALID_TMEID", /*ResponseConstant.ErrorCode.INVALID_TMEID*/5000));
 
 				}
@@ -85,40 +80,10 @@ public class GetUserIdHandler implements IHTTPResponseParser {
 			@Override
 			public void run() {
 				if(httpResponseCode ==401) {
-					if( mConnector.getConfig(ConfigurationParser.ENABLE_TMEID)!=null &&
-							mConnector.getConfig(ConfigurationParser.ENABLE_TMEID).equalsIgnoreCase("true"))
-					{
-						//HeaderIdentification headerIdentification = new HeaderIdentification();
-
-						try {
-							String encryptedText = SampleEncryption.getFakeEncryptTMEID("8343915267288420000");
-							LogApp.d(TAG," response encryptedText:"+encryptedText);
-							final String localStorageTMEID = SampleEncryption.getLocalTMEID(encryptedText);
-							SDKParamCache.setCachedParams(mConnector.getApplicationContext(), SDKParamCache.PREFS_MADE_TMEID, localStorageTMEID);
-							mHandler.post(new Runnable() {
-								@Override
-								public void run() {
-									uiResponseHandler.handleResponse(localStorageTMEID, CacheCriteriaType.FROM_LIVE);
-								}
-							});
-						}
-						catch (Exception exp)
-						{
-							LogApp.d(TAG," response is null or empty:");
-							uiResponseHandler.handleException(new SDKException("ErrorCode.INVALID_TMEID", 5000/*ResponseConstant.ErrorCode.INVALID_TMEID*/));
-
-						}
-
-					}
-					else
-					{
-						LogApp.d(TAG," response is null or empty:");
-						uiResponseHandler.handleException(new SDKException("ErrorCode.INVALID_TMEID", /*ResponseConstant.ErrorCode.INVALID_TMEID*/5000));
-					}
+					uiResponseHandler.handleException(new SDKException("ErrorCode.INVALID_TMEID", /*ResponseConstant.ErrorCode.INVALID_TMEID*/5000));
 
 				}
 				else {
-					LogApp.d(TAG, " sending back to UI:");
 					uiResponseHandler.handleException(e);
 				}
 			}
@@ -133,7 +98,7 @@ public class GetUserIdHandler implements IHTTPResponseParser {
 			JSONObject jsonData = new JSONObject(p_Response);
 			if (jsonData.has(USER_ID)) {
 				userIdStr = jsonData.getString(USER_ID);
-				LogApp.d(TAG, " inside the parse(). userIdStr:" + userIdStr);
+//				LogApp.d(TAG, " inside the parse(). userIdStr:" + userIdStr);
 			}
 
 		} catch (Exception ex) {

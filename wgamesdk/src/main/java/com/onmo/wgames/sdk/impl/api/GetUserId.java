@@ -2,7 +2,6 @@ package com.onmo.wgames.sdk.impl.api;
 
 import android.database.Cursor;
 
-import com.onmo.wgames.sdk.CacheCriteriaType;
 import com.onmo.wgames.sdk.IResponseHandler;
 import com.onmo.wgames.sdk.LogApp;
 import com.onmo.wgames.sdk.SDKConnector;
@@ -60,7 +59,7 @@ public class GetUserId extends APIBaseHandler {
 
 
 				if(data!=null) {
-					responseHandler.handleResponse(data, CacheCriteriaType.FROM_LIVE);
+					responseHandler.handleResponse(data);
 				}
 			}
 		}

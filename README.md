@@ -1,3 +1,5 @@
+![Onmobile: Logo](http://t0.gstatic.com/images?q=tbn:ANd9GcQ7a6C5baa2f_3KA2zVpouH29tMGgRfcCn1PGuubySgbFbKuMxg)
+
 # Onmo Wrapper Games SDK
 
 Onmo Wrapper SDK is Bridge access to UGames Store Android applications.
@@ -7,8 +9,21 @@ just start your app and complete the set-up given below instructions.
 
 ## Set-up
 
+
+
+
 ### Download
 Download [the latest AAR](https://github.com/srinivasvadde/Wrapper_Games_SDKsample/releases/latest) or grab via Gradle:
+
+
+
+Make sure to require Internet permissions in your AndroidManifest.xml file:
+
+```groovy
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
+```
 
 ```groovy
 implementation 'com.github.onmo:wgSDK:1.01'
@@ -66,11 +81,12 @@ IWGameSession mWGSession = OnmoWGSDK.newInitializer(mContext)
 ```
 
 
+
+
 See the [`Wrapper_Games_SDKsample` project](Wrapper_Games_SDKsample) for more details.
 
 
 
+#### Copyright
 
-
-#### License
-We also provide an additional patent grant.
+##### ©2018 OnMobile Global Limited All Rights Reserved.

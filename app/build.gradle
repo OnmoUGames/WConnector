@@ -19,14 +19,14 @@ android {
 }
 
 /*Use for the tempory onmosdk aar*/
-allprojects {
+/*allprojects {
     repositories {
         jcenter()
         flatDir {
             dirs 'libs'
         }
     }
-}
+}*/
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
